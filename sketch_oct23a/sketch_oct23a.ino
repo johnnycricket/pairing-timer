@@ -57,7 +57,7 @@ void setDis(int x, int y) {
 void setup() {
     Serial.begin(38400);
     timerDisplay.begin(0x70);
-    timerDisplay.setBrightness(15);
+    timerDisplay.setBrightness(1);
     pinMode(1, INPUT); //stop reset
     pinMode(2, INPUT); //start
     pinMode(3, INPUT); //increment
