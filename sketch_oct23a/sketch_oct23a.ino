@@ -10,7 +10,7 @@ const int incPin = 3;
 const int stopPin = 1;
 
 Bounce pushStart = Bounce(startPin, 10);
-Bounce pushInc = Bounce(incPin, 10);
+Bounce pushInc = Bounce(incPin, 100);
 Bounce pushStop = Bounce(stopPin, 10);
 
 int minutes = 0;
@@ -63,21 +63,24 @@ void setup() {
     pinMode(3, INPUT); //increment
 }
 
+byte previousState = HIGH;
+
 void loop() {
-    if(digitalRead(1) == HIGH) {
-    } else {
-        Serial.println("red button");
-        stop();
+    if(pushStop.update()) {
+      Serial.println("red button");
+      stop();        
     }
-    if(digitalRead(2) == HIGH) {
-    } else {
+    if(pushStart.update()) {
+      if(pushStart.fallingEdge()) {
         Serial.println("green");
         start();
+      }  
     }
-    if(digitalRead(3) == HIGH) {
-    } else {
+    if(pushInc.update()) {
+      if(pushInc.fallingEdge()) {
         Serial.println("yellow button");
-        setLimit();
+        setLimit(); 
+      }
     }
     its();
     setDis(minutes, seconds);
