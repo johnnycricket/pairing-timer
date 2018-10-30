@@ -30,20 +30,20 @@ void start() {
 }
 
 void setLimit() {
-    //increment by minutes only?˙
+    //increment by minutes only?
     if(minutes <= 99){ 
-        minutes++;
+        minutes += 5;
     }
 }
 
 void its() {
     if(decriment){
         delay(1000);
-        seconds--;
-        if(seconds == 0 && minutes) {
+        if(seconds == 0 && minutes != 0) {
             minutes--;
             seconds = 60;
         }
+        seconds--;
     }
 }
 
